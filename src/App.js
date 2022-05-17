@@ -24,6 +24,42 @@ class App extends React.Component {
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
   }
 
+  onInputChange() {}
+
+  onSaveButtonClick() {}
+
+  validateFunction() {
+    const attributesMaxLimit = 210;
+    const maxAttribute = 90;
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    } = this.state;
+    if (cardName !== ''
+      && cardDescription !== ''
+      && cardAttr1 !== ''
+      && cardAttr2 !== ''
+      && cardAttr3 !== ''
+      && cardImage !== ''
+      && cardRare !== ''
+      && (Number(cardAttr1) >= 0 && Number(cardAttr1) <= maxAttribute)
+      && (Number(cardAttr2) >= 0 && Number(cardAttr2) <= maxAttribute)
+      && (Number(cardAttr3) >= 0 && Number(cardAttr3) <= maxAttribute)
+      && (Number(cardAttr1)
+      + Number(cardAttr2)) + Number(cardAttr3) <= attributesMaxLimit) {
+      this.setState({ isSaveButtonDisabled: false });
+    } else {
+      this.setState({ isSaveButtonDisabled: true });
+    }
+  }
+
+  validateTrunfo() {}
+
   render() {
     const {
       cardName,
