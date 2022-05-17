@@ -21,8 +21,6 @@ class App extends React.Component {
       savedCards: [],
       nomeFiltro: '',
     };
-    this.onInputChange = this.onInputChange.bind(this);
-    this.validateFunction = this.validateFunction.bind(this);
   }
 }
 
