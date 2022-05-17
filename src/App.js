@@ -63,6 +63,13 @@ class App extends React.Component {
     }
   }
 
+  validateAttr = (attr) => {
+    const minValueAttribute = 0;
+    const maxValueAttribute = 90;
+    if (attr <= minValueAttribute || attr > maxValueAttribute) return false;
+    return true;
+  }
+
   validateFunction = () => {
     const {
       cardName,
@@ -74,23 +81,23 @@ class App extends React.Component {
       cardRare,
     } = this.state;
     const attributesMaxLimit = 210;
-    const minValueAttribute = 0;
-    const maxValueAttribute = 90;
+    const attr1 = Number(cardAttr1);
+    const attr2 = Number(cardAttr2);
+    const attr3 = Number(cardAttr3);
+    console.log(this.props);
     if (
       cardName.length > 0
       && cardDescription.length > 0
       && cardImage.length > 0
       && cardRare.length > 0
-      && cardAttr1 >= minValueAttribute
-      && cardAttr1 <= maxValueAttribute
-      && cardAttr2 >= minValueAttribute
-      && cardAttr2 <= maxValueAttribute
-      && cardAttr3 >= minValueAttribute
-      && cardAttr3 <= maxValueAttribute
-      && cardAttr1 + cardAttr2 + cardAttr3 <= attributesMaxLimit
+      && this.validateAttr(attr1)
+      && this.validateAttr(attr2)
+      && this.validateAttr(attr3)
+      && attr1 + attr2 + attr3 <= attributesMaxLimit
     ) {
       return this.setState({ isSaveButtonDisabled: false });
-    } return this.setState({ isSaveButtonDisabled: true });
+    }
+    return this.setState({ isSaveButtonDisabled: true });
   }
 
   validateTrunfo = () => {}
@@ -107,7 +114,7 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
-      // savedCard,
+      savedCard,
     } = this.state;
     return (
       <div>
@@ -137,6 +144,17 @@ class App extends React.Component {
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
           />
+          {savedCard.map((card) => (<Card
+            key={ card.newCardName }
+            cardName={ card.newCardName }
+            cardDescription={ card.newCardDescription }
+            cardAttr1={ card.newCardAttr1 }
+            cardAttr2={ card.newCardAttr2 }
+            cardAttr3={ card.newCardAttr3 }
+            cardImage={ card.newCardImage }
+            cardRare={ card.newCardRare }
+            cardTrunfo={ card.newCardTrunfo }
+          />))}
         </div>
       </div>
     );
