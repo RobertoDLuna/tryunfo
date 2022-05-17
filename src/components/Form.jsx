@@ -92,6 +92,14 @@ class Form extends React.Component {
           <option value="raro">Raro</option>
           <option value="muito raro">Muito Raro</option>
         </label>
+        <label htmlFor="superTrunfo">
+          <input
+            type={ checkbox }
+            id="trunfo"
+            name="hastrunfo"
+            value={ hasTrunfo }
+          />
+        </label>
         <button
           type="submit"
           data-testid="save-button"
