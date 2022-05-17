@@ -3,10 +3,8 @@ import Form from './components/Form';
 import Card from './components/Card';
 
 class App extends React.Component {
-  constructor() {
-    super();
 
-    this.state = {
+    state = {
       cardName: '',
       cardDescription: '',
       cardAttr1: '0',
@@ -17,11 +15,8 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      savedCard: [],
     };
-    this.onInputChange = this.onInputChange.bind(this);
-    this.validateFunction = this.validateFunction.bind(this);
-    this.validateTrunfo = this.validateTrunfo.bind(this);
-    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
   }
 
   onInputChange() {}
@@ -106,6 +101,5 @@ class App extends React.Component {
       </section>
     );
   }
-}
 
 export default App;
