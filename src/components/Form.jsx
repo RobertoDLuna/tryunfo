@@ -80,26 +80,29 @@ class Form extends React.Component {
             data-testid="image-input"
           />
         </label>
-        <label htmlFor="rarity">
+        <label htmlFor="rare-input">
           Raridade:
           <select
-            id="rarity"
             name="cardRare"
             value={ cardRare }
             data-testid="rare-input"
-          />
-          <option value="normal">Normal</option>
-          <option value="raro">Raro</option>
-          <option value="muito raro">Muito Raro</option>
+            onChange={ onInputChange }
+          >
+            <option value="normal">Normal</option>
+            <option value="raro">Raro</option>
+            <option value="muito raro">Muito Raro</option>
+          </select>
         </label>
-        <label htmlFor="superTrunfo">
-          <input
-            type={ checkbox }
-            id="trunfo"
-            name="hastrunfo"
-            value={ hasTrunfo }
-          />
-        </label>
+        { hasTrunfo ? <h4>Você já tem um Super Trunfo em seu baralho</h4> : (<input
+          name="cardTrunfo"
+          checked={ cardTrunfo }
+          onChange={ onInputChange }
+          type="checkbox"
+          id="cbox"
+          data-testid="trunfo-input"
+        />
+        )}
+        ;
         <button
           type="submit"
           data-testid="save-button"
