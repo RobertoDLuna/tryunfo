@@ -104,8 +104,6 @@ class App extends React.Component {
     } return this.setState({ isSaveButtonDisabled: true });
   }
 
-  validateTrunfo = () => {}
-
   render() {
     const {
       cardName,
