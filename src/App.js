@@ -63,12 +63,12 @@ class App extends React.Component {
     }
   }
 
-  validateAttr = (attr) => {
-    const minValueAttribute = 0;
-    const maxValueAttribute = 90;
-    if (attr <= minValueAttribute || attr > maxValueAttribute) return false;
-    return true;
-  }
+  // validateAttr = (attr) => {
+  //   const minValueAttribute = 0;
+  //   const maxValueAttribute = 90;
+  //   if (attr <= minValueAttribute || attr > maxValueAttribute) return false;
+  //   return true;
+  // }
 
   validateFunction = () => {
     const {
@@ -80,24 +80,28 @@ class App extends React.Component {
       cardImage,
       cardRare,
     } = this.state;
-    const attributesMaxLimit = 210;
+    const minValue = 0;
+    const maxValue = 90;
+    const totalMax = 210;
     const attr1 = Number(cardAttr1);
     const attr2 = Number(cardAttr2);
     const attr3 = Number(cardAttr3);
-    console.log(this.props);
+
     if (
       cardName.length > 0
       && cardDescription.length > 0
       && cardImage.length > 0
       && cardRare.length > 0
-      && this.validateAttr(attr1)
-      && this.validateAttr(attr2)
-      && this.validateAttr(attr3)
-      && attr1 + attr2 + attr3 <= attributesMaxLimit
+      && attr1 >= minValue
+      && attr1 <= maxValue
+      && attr2 >= minValue
+      && attr2 <= maxValue
+      && attr3 >= minValue
+      && attr3 <= maxValue
+      && attr1 + attr2 + attr3 <= totalMax
     ) {
       return this.setState({ isSaveButtonDisabled: false });
-    }
-    return this.setState({ isSaveButtonDisabled: true });
+    } return this.setState({ isSaveButtonDisabled: true });
   }
 
   validateTrunfo = () => {}
