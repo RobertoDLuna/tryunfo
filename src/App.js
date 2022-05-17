@@ -14,12 +14,54 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
-      // savedCard: [],
+      savedCard: [],
     };
 
-  onInputChange= () => {}
+  onInputChange= ({ target }) => {
+    const { name, value, checked, type } = target;
+    const valueIpunt = type === 'checkbox' ? checked : value;
+    this.setState({
+      [name]: valueIpunt,
+    }, this.validateFunction);
+  }
 
-  onSaveButtonClick= () => {}
+  onSaveButtonClick= () => {
+    const { cardName, cardDescription, cardImage, cardAttr1,
+      cardAttr2, cardAttr3, cardRare, cardTrunfo } = this.state;
+    const newCard = {
+      newCardName: cardName,
+      newCardDescription: cardDescription,
+      newCardImage: cardImage,
+      newCardAttr1: cardAttr1,
+      newCardAttr2: cardAttr2,
+      newCardAttr3: cardAttr3,
+      newCardRare: cardRare,
+      newCardTrunfo: cardTrunfo,
+    };
+    this.setState((prevState) => ({
+      savedCard: [...prevState.savedCard, newCard],
+    }));
+
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: '',
+      isSaveButtonDisabled: true,
+    });
+    if (cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    } else {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
+  }
 
   validateFunction = () => {
     const {
